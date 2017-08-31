@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    
+</head>
+<body>
+    <div id="box">
+        a => {{a}}
+        <br>
+        b => {{b}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                a:1,
+                // b:
+            },
+            // computed计算属性，
+            // b看起来像函数，实际是个属性，有点类似在data数据中的b，不能进行函数调用,
+            // 可以直接用vm.b找到它
+
+            computed:{
+                b:{
+                    // 默认调用get
+                    get:function(){
+                        // b的值完全取决于return 的返回值
+                        return this.a;
+                    },
+                    // 当进行b的赋值操作使，调用set
+                    set:function(val){
+                        this.a=val;
+                    }
+                }
+            }
+        });
+
+        document.onclick=function(){
+            vm.b=10;
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

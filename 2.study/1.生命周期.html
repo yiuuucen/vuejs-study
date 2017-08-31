@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='vue.js'></script>
+</head>
+<body>
+	<div id="box">{{msg}}</div>
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				msg:'abcd'
+			},
+			// created:function(){
+			// 	alert('实例已经创建');
+			// },
+
+			// // beforeCompile在2.0以上没用了。
+			// // beforeCompile:function(){
+			// // 	alert('编译之前');
+			// // },
+			
+
+			// // compiled在2.0以上没用了.
+			// // compiled:function(){
+			// // 	alert('编译之后');
+			// // },
+
+
+			// //ready在2.0以上没用了.
+			// ready:function(){
+			// 	alert('插入到文档中');
+			// },
+
+			// beforecreated：el 和 data 并未初始化 
+			// created:完成了 data 数据的初始化，el没有
+			// beforeMount：完成了 el 和 data 初始化 
+			// mounted ：完成挂载
+			beforeCreate:function(){
+			 	alert('实例创建前');
+			},
+			created:function(){
+			 	alert('创建完毕');
+			},
+			beforeMount:function(){
+			 	alert('挂载前');
+			},
+			mounted:function(){
+			 	alert('挂载结束');
+			},
+			// beforecreate : 举个栗子：可以在这加个loading事件 
+			// created ：在这结束loading，还做一些初始化，实现函数自执行 
+			// mounted ： 在这发起后端请求，拿回数据，配合路由钩子做一些事情
+			// beforeDestory： 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容
+			beforeUpdate:function () {
+				alert('更新前');
+			},
+			update:function () {
+				alert('更新后');
+			},
+
+			beforeDestroy:function(){
+			 	alert('销毁之前');
+			},
+			destroyed:function(){
+			 	alert('销毁之后');
+			}
+
+		});
+
+		// 点击页面销毁Vue对象
+		document.onclick=function(){
+			vm.$destroy();
+		}
+	</script>
+</body>
+</html>
