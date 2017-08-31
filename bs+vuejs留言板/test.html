@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='vue.js'></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				el:'#box',
+				data:{
+					arr:['apple','banana','orange','pear']
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li v-for='(index,value) in arr'>
+			<!-- 在vue v2.4.0 版本不可以直接操作{{$index}}获得index-->
+			<!-- 移除了 $index 和 $key 这两个隐式声明变量 -->
+				<!-- {{item}} {{$index}} -->
+				{{index}}  {{value}}
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
