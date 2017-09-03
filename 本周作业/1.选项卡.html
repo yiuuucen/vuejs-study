@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='vue.js'></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+
+			width: 500px;
+			height: 300px;
+			margin: 0 auto;
+			/*background: pink;*/
+			border: 1px solid rgb(204,204,204);
+		}
+		.top{
+			width: 100%;
+			height:50px;
+			background: rgb(204,204,204);
+		}
+		.bottom{
+			width: 100%;
+			height: 250px;
+			/*display: none;*/
+		}
+		li{
+			float: left;
+			list-style: none;
+			width: 25%;
+			height: 50px;
+			/*background: red;*/
+			text-align: center;
+			line-height: 50px;
+		}
+		li:hover{
+			background: rgb(0,153,255);
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="top">
+			<ul>
+				<li v-for='(item,index) in arr' @click='change(item,index)'><!-- {{item}} --> {{item.name}}</li>		
+			</ul>
+		</div>
+		<div class="bottom">{{chose}}</div>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				chose:'html',
+				arr:[
+					{name:'html',active:true},
+					{name:'css',active:false},
+					{name:'javascript',active:false},
+					{name:'vue',active:false}
+				]
+			},
+			methods:{
+				change(item,index){
+					this.chose=item.name;
+					for(var i = 0;i<this.arr.length;i++){
+						this.arr[i].active = false;
+					}
+					this.arr[index].active = true;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

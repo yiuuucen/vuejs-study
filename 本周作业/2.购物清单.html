@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='vue.js'></script>
+	<style>
+		*{padding: 0;margin: 0;}
+		li{float: left;list-style: none;}
+		.box{
+			width: 800px;
+			height: 600px;
+			background: pink;
+			margin: 0 auto;
+		}
+		.top{
+			height: 30px;
+			border-top: 1px solid rgb(220,220,220);
+			border-bottom: 1px solid rgb(220,220,220);
+		}
+		.top ul{
+			height: 100%;
+		}
+		.top ul li{
+			width: 16.6%;
+			height: 100%;
+			text-align: center;
+			line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="top">
+			<ul>
+				<li><input type="checkbox" id="allch"><label for="allch">全选</label></li>
+				<li>商品</li>
+				<li>数量</li>
+				<li>单价(元)</li>
+				<li>金额(元)</li>
+				<li>操作</li>
+			</ul>
+		</div>
+		<div class="center">
+			<ul>
+				<li><input type="checkbox" ></li>
+			</ul>
+		</div>
+		<div class="bottom"></div>
+	</div>
+</body>
+</html>
