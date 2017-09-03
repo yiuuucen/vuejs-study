@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="vue.js"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				data:{
+					a:1,
+					arr:['apper','bres','ggcx']
+				},
+				methods:{
+					add(){
+						this.arr.push('tomama');
+					}
+				}
+			}).$mount('#box');
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="点我" @click='add()'>
+		<ul> 
+			<li v-for='value in arr' track-by='$index'>{{value}} {{$index}}</li>
+
+		</ul>
+	</div>
+</body>
+</html>

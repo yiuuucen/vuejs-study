@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="vue.js"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				data:{
+					a:1,
+					arr:['apper','bres','ggcx']
+				},
+				methods:{
+					add(){
+						this.arr.push('tomama');
+					}
+				}
+			}).$mount('#box');
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="点我" @click='add()'>
+		<ul> 
+		<!-- track-by后面的index，可以加$，可以不加 -->
+			<li v-for='(value,index) in arr' track-by='$index'>{{value}} {{index}}</li>
+
+		</ul>
+	</div>
+</body>
+</html>
