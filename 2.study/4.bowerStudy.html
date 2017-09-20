@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='bower_components/vue/dist/vue.js'></script>
+</head>
+<body>
+	<div id="box">
+		<aaa></aaa>
+	</div>
+	<script>
+		
+		var vm=new Vue({
+			el:'#box',
+			components:{
+				'aaa':{
+					template:'<h3>{{msg}}</h3>',
+					data(){
+						return {
+							msg:'不会啊'
+						}
+					}
+				}
+			}
+		});
+		
+	</script>
+</body>
+</html>
