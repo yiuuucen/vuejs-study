@@ -19,9 +19,7 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for='item in newList'>
-          	<a :href="item.url">{{item.name}}</a>
-          </li>
+          <router-link tag="li" v-for="val in slides" :to="{path:val.href}" active-class="active">{{val.title}}</router-link> 
         </ul>
       </div>
     </div>
@@ -65,23 +63,23 @@ export default {
       slides: [
         {
           src: require('../assets/slideShow/pic1.jpg'),
-          title: 'xxx1',
-          href: 'detail/analysis'
-        },
-        {
-          src: require('../assets/slideShow/pic2.jpg'),
-          title: 'xxx2',
+          title: 'count',
           href: 'detail/count'
         },
         {
+          src: require('../assets/slideShow/pic2.jpg'),
+          title: 'forecast',
+          href: 'detail/forecast'
+        },
+        {
           src: require('../assets/slideShow/pic3.jpg'),
-          title: 'xxx3',
-          href: 'http://xxx.xxx.com'
+          title: 'analysis',
+          href: 'detail/analysis'
         },
         {
           src: require('../assets/slideShow/pic4.jpg'),
-          title: 'xxx4',
-          href: 'detail/forecast'
+          title: 'publish',
+          href: 'detail/publish'
         }
       ],
       productList: {
@@ -260,5 +258,11 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.lastest-news li.active,
+.lastest-news li:hover {
+  background: #4fc08d;
+  color: #fff;
+  cursor: pointer;
 }
 </style>

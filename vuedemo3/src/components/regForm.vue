@@ -5,14 +5,17 @@
         <span class="g-form-label">{{ formLine.label }}：</span>
         <div class="g-form-input">
           <input type="text" 
-          v-model="formLine.model" placeholder="请输入用户名">
+          v-model="formLine.model" :placeholder="'请输入'+formLine.label">
         </div>
+        <!-- 计算属性，难道只能直接用名字userErrors.errorText,而不能用formLine.error.errorText??????-->
+        <span class="g-form-error" :error="formLine.error">{{ formLine.error }}</span>
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
           <a class="button" @click="onLogin">登录</a>
         </div>
       </div>
+      <button @click='dian'>点我</button>
     </div>
   </div>
 </template>
@@ -24,13 +27,17 @@ export default {
   },
   data () {
     return {
-      
+      "formData":[
+        {"label":"用户名","model":"","error":"userErrors"},
+        {"label":"邮箱","model":"","error":"3213"},
+        {"label":"密码","model":"","error":"passwordErrors"}
+      ]
     }
   },
   computed: {
     userErrors () {
       let status, errorText
-      if (!/@/g.test(this.usernameModel)) {
+      if (!/@/g.test(this.formData[0].model)) {
         status = false
         errorText = '必须包含@'
       }
@@ -38,16 +45,16 @@ export default {
         status = true
         errorText = ''
       }
-      return {
+      return {  
         status,
         errorText
       }
     },
     passwordErrors () {
       let status, errorText
-      if (!/@/g.test(this.usernameModel)) {
+      if (!/@/g.test(this.formData[2].model)) {
         status = false
-        errorText = '必须包含@'
+        errorText= '必须包含@'
       }
       else {
         status = true
@@ -58,10 +65,30 @@ export default {
         errorText
       }
     }
-  },
+  }, 
   methods: {
     closeMyself () {
       this.$emit('on-close')
+    },
+    onLogin () {
+      if (!this.userErrors.status || !this.passwordErrors.status) {
+        this.errorText = '部分选项未通过'
+      }
+      else {
+        this.errorText = ''
+        this.$http.get('http://localhost:3001/login')
+        .then((res) => {
+          this.$emit('has-log', res.data)
+          
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
+    dian(){
+      console.log(this.userErrors)
+      
+      console.log(this.formData[0].error)
     }
   }
 }
