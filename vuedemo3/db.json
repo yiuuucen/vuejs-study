@@ -1,6 +1,6 @@
 {
   "getNewsList": [
-	  {
+    {
       "name": "数据统计",
       "url": "http://starcraft.com"
     },
@@ -21,5 +21,9 @@
   "login": {
     "username": "yudongdong",
     "userId": 123123
+  },
+  "getPrice": {
+    "buyNumber": 1,
+    "version": ""
   }
 }

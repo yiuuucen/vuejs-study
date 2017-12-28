@@ -10,7 +10,7 @@
                   购买数量：
               </div>
               <div class="sales-board-line-right">
-                
+                <v-counter @on-change="onParamChange('buyNum', $event)"></v-counter>
               </div>
           </div>
           <div class="sales-board-line">
@@ -26,7 +26,7 @@
                   有效时间：
               </div>
               <div class="sales-board-line-right">
-                  
+                  <v-chooser :selections="periodList"></v-chooser>
               </div>
           </div>
           <div class="sales-board-line">
@@ -34,7 +34,7 @@
                   产品版本：
               </div>
               <div class="sales-board-line-right">
-                  
+                  <v-multiply-chooser :selections="versionList"></v-multiply-chooser>
               </div>
           </div>
           <div class="sales-board-line">
@@ -110,10 +110,17 @@
 <script>
 import MyDialog from '../../components/dialog'
 import VSelection from '../../components/selection'
+import VCounter from '../../components/counter'
+import VChooser from '../../components/chooser'
+import VMultiplyChooser from '../../components/multiplyChooser'
+import _ from 'lodash'
 export default {
   components:{
     VSelection,
-    MyDialog
+    MyDialog,
+    VCounter,
+    VChooser,
+    VMultiplyChooser
   },
   data () {
     return {
@@ -172,6 +179,25 @@ export default {
     }
   },
   methods :{
+    onParamChange (attr, val) {
+      this[attr] = val
+      this.getPrice()
+    },
+    getPrice () {
+      let buyVersionsArray = _.map(this.versions, (item) => {
+        return item.value
+      })
+      let reqParams = {
+        buyNumber: this.buyNum,
+        buyType: this.buyType.value,
+        period: this.period.value,
+        version: buyVersionsArray.join(',')
+      }
+      this.$http.post('http://localhost:3001/getPrice', reqParams)
+      .then((res) => {
+        this.price = res.data.amount
+      })
+    },
     showPayDialog(){
       this.isShowPayDialog=true
     },
