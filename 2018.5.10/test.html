@@ -11,17 +11,32 @@
 <body>
 	<div id="app">
 		<input type="text" v-model.number="age">
-		<div>{{age}}</div>
+		<div>{{msg}}</div>
+		<span>{{now}}</span>
+		{{fullN}}
 	</div>
 	<script>
 		var vm=new Vue({
 			el:"#app",
 			data:{
-				age:"dsds"
+				age:"111",
+				firstN:"foo",
+				lastN:"Bar",
+				fullN:"foo bar222"
+			},
+			computed:{
+				msg:function(){
+					return this.age+'a';
+				},
+				now:function(){
+					return Date.now();
+				}
 			}
 		})
+		var str="32131,4343";
+		console.log(str.split(","))
 		
-		console.log(typeof(vm.$data.age))
+		
 	</script>
 </body>
 </html>
